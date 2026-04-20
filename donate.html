@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Donate Food</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body class="donate-body">
+        <a href="index.html" class="back-btn">⮜ Back</a>
+        <section class="donate-header">
+            <p class="tag">Zero Food Waste Initiative</p>
+            <h1>Share Food, <span>Change Lives</span></h1>
+
+            <p class="subtitle">
+                Your excess can feed others. Every donation matters.
+            </p>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <h3>2,841</h3>
+                    <p>Meals Donated</p>
+                </div>
+                <div class="stat-box">
+                    <h3>312</h3>
+                    <p>Families helped</p>
+                </div>
+                <div class="stat-box">
+                    <h3>98%</h3>
+                    <p>Pickup rate</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="donation-form">
+            <h3>Donor Information</h3>
+            <form onsubmit="showPopup(event)">
+            <div class="form-row">
+                <input type="text" placeholder="Full Name" required>
+                <input type="text" placeholder="Contact Number" required>
+                <input type="email" placeholder="Email Address" required>
+            </div>
+
+            <input type="text" class="full-input" placeholder="Pickup / Drop-off Address" required>
+
+            <h3>Food Details</h3>
+            <div class="food-options">
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Cooked Meals
+                </label>
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Canned Goods
+                </label>
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Fresh Produce
+                </label>
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Rice / Grains
+                </label>
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Beverages
+                </label>
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Snacks
+                </label>
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Baby Food
+                </label>
+                <label class="food-chip">
+                    <input type="checkbox" name="food"> Other
+                </label>
+            </div>
+
+            <div class="form-row">
+                <input type="text" placeholder="Quantity (ex. 5kg, 10 packs)">
+                <input type="text" placeholder="Expiry / Best Before">
+            </div>
+
+            <input type="text" class="full-input" placeholder="Food condition (fresh cooked, sealed, unopened)">
+            <textarea placeholder="Additional notes (allergies, storage requirements, etc.)"></textarea>
+
+            <h3>Delivery Method</h3>
+            <div class="delivery-options">
+                <label class="delivery-box">
+                    <input type="radio" name="delivery">
+                    Pickup
+                    <p>We come to your location</p>
+                </label>
+
+                <label class="delivery-box">
+                    <input type="radio" name="delivery">
+                    Drop-off
+                    <p>Bring it to our center</p>
+                </label>
+            </div>
+
+            <h3>Preferred Schedule</h3>
+            <input type="datetime-local" class="full-input">
+             <button type="submit" class="greenbtn">Schedule Donation</button>
+            <p class="privacy">
+                Your information is safe and will only be used for this donation.
+            </p>
+            </form>
+        </section>
+
+       <div id="popup" class="popup">
+            <div class="popup-content">
+                <div class="checkmark">✔</div>
+                <h2>Donation Scheduled!</h2>
+                <p>Thank you for helping fight hunger in the community.</p>
+                <button onclick="closePopup()" class="popup-btn">OK</button>
+            </div>
+        </div>
+
+        <script>
+            function showPopup(event){
+                event.preventDefault();
+                document.getElementById("popup").style.display = "flex";
+        }
+
+            function closePopup(){
+                document.getElementById("popup").style.display = "none";
+                document.querySelector('form').reset();
+        }
+        </script>
+    </body>
+</html>

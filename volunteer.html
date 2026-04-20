@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Volunteer | FoodWise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="vol-nav">
+        <a href="/" class="vol-nav-logo">
+            <img src="/logo.png" alt="FoodWise logo">
+            <span>FoodWise</span>
+        </a>
+        <a href="/" class="vol-back">⮜ Back to Home</a>
+    </nav>
+
+    <div class="vol-hero">
+        <div class="vol-badge">🤝 Join Our Community</div>
+        <h1>Make a <em>difference</em><br>as a Volunteer</h1>
+        <p>Help support food programs and make a real impact in the lives of families who need it most.</p>
+    </div>
+
+    <div class="vol-main">
+
+        <!-- WHY VOLUNTEER -->
+        <div class="vol-info">
+            <h2>Why Volunteer?</h2>
+
+            <div class="vol-reason">
+                <div class="vol-reason-icon">🍱</div>
+                <div class="vol-reason-text">
+                    <h4>Feed Families in Need</h4>
+                    <p>Help distribute food directly to families experiencing food insecurity in your area.</p>
+                </div>
+            </div>
+
+            <div class="vol-reason">
+                <div class="vol-reason-icon">🚗</div>
+                <div class="vol-reason-text">
+                    <h4>Support Food Drives</h4>
+                    <p>Join local food drives and help collect, sort, and deliver donations to those who need them.</p>
+                </div>
+            </div>
+
+            <div class="vol-reason">
+                <div class="vol-reason-icon">🌱</div>
+                <div class="vol-reason-text">
+                    <h4>Impact Your Community</h4>
+                    <p>Make a positive and lasting difference right in your own neighborhood and city.</p>
+                </div>
+            </div>
+
+            <div class="vol-reason">
+                <div class="vol-reason-icon">⭐</div>
+                <div class="vol-reason-text">
+                    <h4>Gain Real Experience</h4>
+                    <p>Build meaningful volunteer experience while developing leadership and teamwork skills.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vol-form-card">
+            <h2>Volunteer Registration</h2>
+            <p class="form-sub">Fill out the form below and we'll get you started!</p>
+
+            <form onsubmit="showPopup(event)" autocomplete="off">
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="fullname" placeholder="Juan Dela Cruz" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="text" name="contact" placeholder="09XX XXX XXXX">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="you@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Program</label>
+                    <select name="program" required>
+                        <option value="" disabled selected>Select a Program</option>
+                        <option>City Food Bank</option>
+                        <option>Harvest Helpers</option>
+                        <option>GenZhelter</option>
+                        <option>Neighborhood Meal Share</option>
+                        <option>Green Harvest Initiative</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Available Date</label>
+                    <input type="date" name="date">
+                </div>
+
+                <button type="submit" class="vol-submit">Join as Volunteer →</button>
+                <p class="form-privacy">🔒 Your information is safe and will not be shared.</p>
+            </form>
+        </div>
+
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <div class="popup-icon">✅</div>
+            <h2>You're In!</h2>
+            <p>Thank you for signing up! A confirmation email has been sent to your Gmail. We'll reach out to you soon!</p>
+            <button onclick="closePopup()" class="popup-btn">Awesome, got it!</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        const SERVICE_ID  = "service_yimxajp";
+        const TEMPLATE_ID = "template_vjoh8zp";
+        const PUBLIC_KEY  = "qgBccY4192kS_MMm7";
+
+        emailjs.init(PUBLIC_KEY);
+
+        function showPopup(event) {
+            event.preventDefault();
+
+            const form = document.querySelector('form');
+            const fullName = form.fullname.value;
+            const email    = form.email.value;
+            const program  = form.program.value;
+            const date     = form.date.value;
+
+            const btn = document.querySelector('.vol-submit');
+            btn.textContent = "Sending...";
+            btn.disabled = true;
+
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                full_name: fullName,
+                to_email:  email,
+                program:   program,
+                date:      date,
+            })
+            .then(() => {
+                document.getElementById("popup").style.display = "flex";
+                btn.textContent = "Join as Volunteer →";
+                btn.disabled = false;
+            })
+            .catch((error) => {
+                alert("Something went wrong. Please try again.");
+                console.error(error);
+                btn.textContent = "Join as Volunteer →";
+                btn.disabled = false;
+            });
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+            document.querySelector('form').reset();
+        }
+    </script>
+
+</body>
+</html>
